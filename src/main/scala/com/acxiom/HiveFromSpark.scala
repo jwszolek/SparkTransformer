@@ -15,29 +15,17 @@ object HiveFromSpark {
 
   def main(args: Array[String]) {
 
-
-    export()
-
-//    val hiveContext = new HiveContext(sc)
-//    import hiveContext.implicits._
-//
-//    hiveContext.sql("CREATE TABLE IF NOT EXISTS website.imdbPrincFlat (tconst STRING, principalID STRING)")
-//
-//    val getAllfromPrinc = hiveContext.sql("select * from website.imdbprincipal")
-//    val princArray = getAllfromPrinc.withColumn("princArray", functions.split(new Column("principalcast"),","))
-//    princArray.show()
-//    val princExplode = princArray.select(new Column("tconst"), functions.explode(new Column("princArray")).as("principalID"))
-//    princExplode.show()
-//
-//    princExplode.write.mode("overwrite").saveAsTable("website.imdbPrincFlat")
-  }
-
-
-  def export()  {
     val hiveContext = new HiveContext(sc)
-    val getAllfromPrinc = hiveContext.sql("select * from website.imdbprincflat_names")
-    getAllfromPrinc.count()
-    getAllfromPrinc.write.format("com.databricks.spark.csv").save("/tmp/imdb.csv")
+    import hiveContext.implicits._
+
+    hiveContext.sql("CREATE TABLE IF NOT EXISTS website.imdbPrincFlat (tconst STRING, principalID STRING)")
+    val getAllfromPrinc = hiveContext.sql("select * from website.imdbprincipal")
+    val princArray = getAllfromPrinc.withColumn("princArray", functions.split(new Column("principalcast"),","))
+    princArray.show()
+    val princExplode = princArray.select(new Column("tconst"), functions.explode(new Column("princArray")).as("principalID"))
+    princExplode.show()
+
+    princExplode.write.mode("overwrite").saveAsTable("website.imdbPrincFlat")
   }
 
 }
