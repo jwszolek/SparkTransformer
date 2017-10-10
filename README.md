@@ -16,3 +16,4 @@ Transform array into separate records in Spark
 | tt0000001 | nm0374658     |
 | tt0000001 | nm1588970     |
 
+Link to KyloWorkshop presentation: https://docs.google.com/presentation/d/1EGkaP-kWW3tIT5zx0UAUTLkyA5L4Svj_OiTV6O7Y3Jo/edit?usp=sharing
