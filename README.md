@@ -15,4 +15,3 @@ Transform array into separate records in Spark
 | tt0000001 | nm0005690     |
 | tt0000001 | nm0374658     |
 | tt0000001 | nm1588970     |
-
